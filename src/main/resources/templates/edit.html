@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <form method="post" th:action="@{/todo/edit(id=${id})}" th:object="${todo}">
+            <div class="field">
+                <input type="hidden" th:field="*{id}" name="id" id="id">
+            </div>
+
+            <div class="field">
+                <label class="col" for="name">Name: </label>
+                <input class="col" type="text" th:field="*{name}" name="name" id="name" th:value="*{name}">
+            </div>
+
+            <div class="field">
+                <label class="col" for="desc">Description: </label>
+                <textarea class="col" th:field="*{description}" name="desc" id="desc" th:value="*{description}"></textarea>
+            </div>
+
+            <div class="field">
+                <label class="col" for="due_date">Due date: </label>
+                <input class="col" type="date" th:field="*{due_date}" name="due_date" id="due_date" th:value="*{due_date}">
+            </div>
+
+            <div class="field">
+                <label class="col" for="priority_level">Priority: </label>
+                <select class="col" th:field="*{priority_level}" name="priority_level" id="priority_level" th:value="*{priority_level}">
+                    <option value="high">high</option>
+                    <option value="medium">medium</option>
+                    <option value="low">low</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label class="col" for="status">Status: </label>
+                <select class="col" th:field="*{status}" name="status" id="status" th:value="*{status}">
+                    <option value="pending">pending</option>
+                    <option value="started">started</option>
+                    <option value="in_progress">in progress</option>
+                    <option value="completed">completed</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label class="col" for="created_at">Created: </label>
+                <input class="col" type="date" th:field="*{created_at}" name="created_at" id="created_at" th:value="*{created_at}">
+            </div>
+
+            <div class="field">
+                <label class="col" for="updated_at">Updated: </label>
+                <input class="col" type="date" th:field="*{updated_at}" name="updated_at" id="updated_at" th:value="*{updated_at}">
+            </div>
+
+            <div class="field">
+                <button class="col" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

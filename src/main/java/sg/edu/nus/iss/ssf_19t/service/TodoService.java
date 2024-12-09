@@ -89,4 +89,15 @@ public class TodoService {
             return false;
         }
     }
+
+    public Todo getByID(String id) throws ParseException {
+        String rawData = (String)repository.get(Constant.KEY_TODO, id);
+        Todo todo = Todo.serialize(rawData);
+        // System.out.println(todo.toString());
+        return todo;
+    }
+
+    public void deleteById(String id) {
+        repository.delete(Constant.KEY_TODO, id);
+    }
 }

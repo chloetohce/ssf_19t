@@ -50,6 +50,7 @@
                     <th>Status</th>
                     <th class="col-1">Created</th>
                     <th class="col-1">Updated</th>
+                    <th class="col-1">Actions</th>
                 </thead>
                 <tbody>
                     <tr th:each="todo, stat : ${todos}">
@@ -61,6 +62,10 @@
                         <td th:text="${todo.status}"></td>
                         <td th:text="${#dates.format(todo.created_at, 'yyyy-MM-dd')}"></td>
                         <td th:text="${#dates.format(todo.updated_at, 'yyyy-MM-dd')}"></td>
+                        <td>
+                            <a class="btn btn-sm btn-success" th:href="@{/todo/edit(id=${todo.id})}">Edit</a>
+                            <a class="btn btn-sm btn-danger" th:href="@{/todo/del(id=${todo.id})}">Delete</a>
+                        </td>
                     </tr>
                 </tbody>
             </table>

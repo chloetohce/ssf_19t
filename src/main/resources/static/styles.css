@@ -11,6 +11,7 @@ form {
 .col {
     display: table-cell;
     margin: 3px;  
+    vertical-align:top;
 }
 
 label {
