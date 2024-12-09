@@ -18,9 +18,6 @@ import sg.edu.nus.iss.ssf_19t.model.Todo;
 import sg.edu.nus.iss.ssf_19t.service.TodoService;
 
 
-
-
-
 @Controller
 @RequestMapping("/todo")
 public class TodoController {
@@ -30,12 +27,21 @@ public class TodoController {
     @GetMapping("/all")
     public ModelAndView allTodos(HttpSession session) throws ParseException {
         Optional<String> usernameOpt = Optional.ofNullable((String)session.getAttribute("username"));
+        Optional<Integer> ageOpt = Optional.ofNullable((Integer)session.getAttribute("age"));
+        ageOpt = ageOpt.filter(age -> age >=10);
+
+        if (usernameOpt.isEmpty()) {
+            ModelAndView refused = new ModelAndView("redirect:/refused.html");
+            return refused;
+        } else if (ageOpt.isEmpty()) {
+            ModelAndView underage = new ModelAndView("redirect:/underage.html");
+            return underage;
+        }
 
         ModelAndView mav = new ModelAndView("listing");
         mav.addObject("todos", todoService.getAll());
 
-        ModelAndView refused = new ModelAndView("redirect:/refused.html");
-        return usernameOpt.map(u -> mav).orElse(refused);
+        return mav;
     }
     
     @GetMapping("/filter/{status}")
