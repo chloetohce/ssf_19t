@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-        <form method="post" th:action="@{/todo/edit(id=${id})}" th:object="${todo}">
+        <form method="post" th:action="@{/todo/edit}" th:object="${todo}">
             <div class="field">
                 <input type="hidden" th:field="*{id}" name="id" id="id">
             </div>

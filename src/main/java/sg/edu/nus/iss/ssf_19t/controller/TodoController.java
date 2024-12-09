@@ -78,17 +78,16 @@ public class TodoController {
         ModelAndView mav = new ModelAndView();
 
         mav.setViewName("edit");
-        mav.addObject("id", id);
         mav.addObject("todo", todoService.getByID(id));
         return mav;
     }
 
     @PostMapping("/edit")
-    public ModelAndView editTodo(@RequestParam("id") String id, @ModelAttribute("todo") Todo entity) {
+    public ModelAndView editTodo(@ModelAttribute("todo") Todo entity) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("redirect:/todo/all");
         todoService.save(entity);
-        System.out.println("Editing todo id: "+ id);
+        System.out.println("Editing todo id: "+ entity.getId());
         return mav;
     }
     
