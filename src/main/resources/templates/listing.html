@@ -10,49 +10,66 @@
 </head>
 
 <body>
-    <div class="grid">
-    <div class="dropdown m-3 p-2">
-        <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Filter
-        </button>
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/todo/filter/pending">Pending</a></li>
-            <li><a class="dropdown-item" href="/todo/filter/started">Started</a></li>
-            <li><a class="dropdown-item" href="/todo/filter/in_progress">In Progress</a></li>
-            <li><a class="dropdown-item" href="/todo/filter/completed">Completed</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="/todo/all">Remove filters</a></li>
-        </ul>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="dropdown">
+                    <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Filter
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/todo/filter/pending">Pending</a></li>
+                        <li><a class="dropdown-item" href="/todo/filter/started">Started</a></li>
+                        <li><a class="dropdown-item" href="/todo/filter/in_progress">In Progress</a></li>
+                        <li><a class="dropdown-item" href="/todo/filter/completed">Completed</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="/todo/all">Remove filters</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="float-sm-end">
+                    <a href="/todo/add" class="btn btn-sm btn-success">Add</a>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+
+            <table class="table m-3 p-3">
+                <thead>
+                    <th>#</th>
+                    <th class="col-2">Task</th>
+                    <th>Description</th>
+                    <th class="col-1">Due</th>
+                    <th>Priority</th>
+                    <th>Status</th>
+                    <th class="col-1">Created</th>
+                    <th class="col-1">Updated</th>
+                </thead>
+                <tbody>
+                    <tr th:each="todo, stat : ${todos}">
+                        <td th:text="${stat.count}"></td>
+                        <td th:text="${todo.name}"></td>
+                        <td th:text="${todo.description}"></td>
+                        <td th:text="${#dates.format(todo.due_date, 'yyyy-MM-dd')}"></td>
+                        <td th:text="${todo.priority_level}"></td>
+                        <td th:text="${todo.status}"></td>
+                        <td th:text="${#dates.format(todo.created_at, 'yyyy-MM-dd')}"></td>
+                        <td th:text="${#dates.format(todo.updated_at, 'yyyy-MM-dd')}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
-
-    <table class="table m-3 p-3">
-        <thead>
-            <th>#</th>
-            <th class="col-2">Task</th>
-            <th>Description</th>
-            <th class="col-1">Due</th>
-            <th>Priority</th>
-            <th>Status</th>
-            <th class="col-1">Created</th>
-            <th class="col-1">Updated</th>
-        </thead>
-        <tbody>
-            <tr th:each="todo, stat : ${todos}">
-                <td th:text="${stat.count}"></td>
-                <td th:text="${todo.name}"></td>
-                <td th:text="${todo.description}"></td>
-                <td th:text="${#dates.format(todo.due_date, 'yyyy-MM-dd')}"></td>
-                <td th:text="${todo.priority_level}"></td>
-                <td th:text="${todo.status}"></td>
-                <td th:text="${#dates.format(todo.created_at, 'yyyy-MM-dd')}"></td>
-                <td th:text="${#dates.format(todo.updated_at, 'yyyy-MM-dd')}"></td>
-            </tr>
-        </tbody>
-    </table>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

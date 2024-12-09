@@ -80,4 +80,13 @@ public class TodoService {
         }
         return todos;
     }
+
+    public boolean save(Todo entity) {
+        try {
+            repository.create(Constant.KEY_TODO, entity.getId(), entity.deserialize());
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

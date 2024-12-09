@@ -3,6 +3,9 @@ package sg.edu.nus.iss.ssf_19t.model;
 import java.io.StringReader;
 import java.text.ParseException;
 import java.util.Date;
+import java.util.UUID;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
@@ -22,13 +25,20 @@ public class Todo {
     private String description;
 
     @FutureOrPresent
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date due_date;
 
     private String priority_level;
     private String status;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date created_at;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date updated_at;
     
+    public Todo() {
+        this.id = UUID.randomUUID().toString();
+    }
+
     public Todo(String id, String name, String description, Date due_date, String priority, String status,
             Date created, Date updated) {
         this.id = id;
@@ -152,6 +162,13 @@ public class Todo {
 
     public void setUpdated_at(Date updated) {
         this.updated_at = updated;
+    }
+
+    @Override
+    public String toString() {
+        return "Todo [id=" + id + ", name=" + name + ", description=" + description + ", due_date=" + due_date
+                + ", priority_level=" + priority_level + ", status=" + status + ", created_at=" + created_at
+                + ", updated_at=" + updated_at + "]";
     }
 
     

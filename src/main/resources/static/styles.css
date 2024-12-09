@@ -1,0 +1,18 @@
+form {
+    margin:10px;
+    display: table;
+}
+
+.field {
+    
+    display: table-row;
+}
+
+.col {
+    display: table-cell;
+    margin: 3px;  
+}
+
+label {
+    text-align: right;
+}
